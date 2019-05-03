@@ -1,6 +1,6 @@
 import random
 
-x = 10
+x = 20
 cont = 1
 Process = open('process.txt', 'w+')
 
