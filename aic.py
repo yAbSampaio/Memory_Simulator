@@ -41,6 +41,4 @@ for i in Proce :
 for i in Lista:
     Var = Process(int(i[1]),int(i[2]),int(i[3]))
     Processos.append(Var)
-print Processos[2].t_arrival
-Processos = sorted(Processos, key = Process.get_arr)  
-print Processos[2].t_arrival
+Processos = sorted(Processos, key = Process.get_arr)
