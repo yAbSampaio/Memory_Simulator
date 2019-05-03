@@ -21,3 +21,5 @@ class memory():
 
     def get_info(self):
         return [self.__size, self.__id_m]
+
+#-------------------------------------------#
