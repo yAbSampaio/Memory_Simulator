@@ -1,8 +1,9 @@
 class process():
-    def __init__(self, name, arr, beg, run):
+    def __init__(self, name, arr, tam, run):
         self.__name = name
         self.__t_arrival = arr
-        self.__size = beg
+        self.__size = tam
+        
         self.__t_run = run
         self.__t_end = None
 
@@ -43,7 +44,7 @@ class mem_virtual():
         self.__memory[id_h].modify(self.__memory[id_h() - proce.get_size())
         if self.__memory[id_h].size() == 0:
             self.__memory[id_h].pop()
-        self.__memory.insert(id_h, proce) 
+        self.__memory.insert(id_h, proce)
         proce.modify(clock) 
 
     def out_proce(self, proce):
