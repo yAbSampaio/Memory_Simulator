@@ -15,23 +15,23 @@ list_proc = []
 memory_Virtual = []
 memory_Virtual.append(memory(1024))
 
-for i in proce :
+for i in proce : #padronização do arquivo
     line=i.split("\n")[0]
     cell = line.split(" ")
     List.append(cell)
     
-for i in List:
+for i in List: #cria lista de classe processo
     Var = process(int(i[0]),int(i[1]),int(i[2]),int(i[3]))
     list_proc.append(Var)
 list_proc = sorted(list_proc, key = process.get_arr)
 Memo = memory_Virtual()
 
 #---------------------------------------------------------------#
-while (list_proc != None):
-    arrival = 0
-    while (list_proc[arrival].get_arr() <= atual_clock):
+n_wait = 0
+while (list_proc != None):#Enquato haver processo na lista 
+    while (list_proc[n_wait].get_arr() <= atual_clock):#Fazer lista de espera
         #Chamada da função first, best worst
-        arrival += 1        
+        n_wait += 1        
     
     for i in range(len(list_proc)):
         if atual_clock == list_proc[i].get_end()

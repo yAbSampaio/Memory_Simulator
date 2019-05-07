@@ -39,14 +39,16 @@ class mem_virtual():
         self.__memory = []
         self.__memory.append(cell_memory(1024, 0))
 
-    def inp_proce(self, proce, hole, clock):
-        self.__memory.insert(hole.get_ids(), proce)
-        hole.modify(hole.get_size - proce.get_size) 
+    def inp_proce(self, proce, clock,id_h):
+        self.__memory[id_h].modify(self.__memory[id_h() - proce.get_size())
+        if self.__memory[id_h].size() == 0:
+            self.__memory[id_h].pop()
+        self.__memory.insert(id_h, proce) 
         proce.modify(clock) 
 
     def out_proce(self, proce):
         sz = proce.get_size()
-        if checking(pos-1):
+        if checking(pos-1):#Logica da posição
             self.__memory[pos-1].size += sz
             if checking(pos+1):
                 self.__memory[pos-1].size += sz
