@@ -3,7 +3,6 @@ class process():
         self.__name = name
         self.__t_arrival = arr
         self.__size = tam
-        
         self.__t_run = run
         self.__t_end = None
 
@@ -52,7 +51,8 @@ class mem_virtual():
         if checking(pos-1):#Logica da posição
             self.__memory[pos-1].size += sz
             if checking(pos+1):
-                self.__memory[pos-1].size += sz
+                self.__memory[pos-1].size += self.__memory[pos+1].size 
+                self.__memory.pop(pos+1)
                 self.__memory.pop(pos)
         elif checking(pos+1):
                 self.__memory[pos-1].size += sz
