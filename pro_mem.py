@@ -49,13 +49,13 @@ class mem_virtual():
     def out_proce(self, proce):
         sz = proce.get_size()
         if checking(pos-1):#Logica da posição na memória
-            self.__memory[pos-1].size += sz
+            self.__memory[pos-1].size() += sz
             if checking(pos+1):
-                self.__memory[pos-1].size += self.__memory[pos+1].size 
+                self.__memory[pos-1].size() += self.__memory[pos+1].size()
                 self.__memory.pop(pos+1)
                 self.__memory.pop(pos)
         elif checking(pos+1):
-                self.__memory[pos-1].size += sz
+                self.__memory[pos-1].size() += sz
                 self.__memory.pop(pos)
         else:
             self.__memory.pop(pos)
