@@ -39,33 +39,32 @@ class mem_virtual():
         self.__memory = []
         self.__memory.append(cell_memory(1024, 0))
 
-    def new_hole(self):
-        #achar posicao na memoria dar pop e criar um novo buraco com msm tamanho
     def inp_proce(self, proce, hole, clock):
-        self.__memory.insert(hole.get_ids(), proce)  # fazer um for no cod pra achar a posicao dodo buraco
-        hole.modify(hole.get_size - proce.get_size)  # ver com michel se tem q returna ou funciona como ponteiro
-        proce.modify(clock)  # ver com michel se tem q returna ou funciona como ponteiro
+        self.__memory.insert(hole.get_ids(), proce)
+        hole.modify(hole.get_size - proce.get_size) 
+        proce.modify(clock) 
 
     def out_proce(self, proce):
         sz = proce.get_size()
-        #chegar_posicao_aesquerda
-        #chegar_posicao_adireita
-        #criar buraco
-    def checking(self):
-
+        if checking(pos-1):
+            self.__memory[pos-1].size += sz
+            if checking(pos+1):
+                self.__memory[pos-1].size += sz
+                self.__memory.pop(pos)
+        elif checking(pos+1):
+                self.__memory[pos-1].size += sz
+                self.__memory.pop(pos)
+        else:
+            self.__memory.pop(pos)
+            self.__memory.insert(pos,cell_memory(sz,pos))
+        
+    def checking(self,position):
+        if (self.__memory[position] == cell_memory):
+            return True
     def dsc_hole(self):
+        hole = []
+        for i in self.__memory
+            if (i == cell_memory):
+                hole.append(i)
+        return hole
 
-
-'''
-    sorted(key = end)
-    for i in proce:
-        if clock = end[i]
-            memory output
-'''
-
-'''
-    processos[...]
-    memory mem_virtual
-    for processo chegar
-        memory input 
-'''

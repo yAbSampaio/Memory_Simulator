@@ -1,14 +1,14 @@
 #coding= utf -8
-from version_Beta import*
+from pro_mem import*
 
-#------------------------------------------------------------#
+#------------------------VarGloais------------------------------------#
 atual_clock = 0
 t_apply = 0
 t_wait = 0
 t_fail = 0
 t_medio = 0
-#verifica se são essas as variaveis msm
-#-----------------------------------------------------------#
+
+#----------------------Inicializaçao-------------------------------------#
 proce = open("process.txt","r")
 List = []
 list_proc = []
@@ -24,5 +24,15 @@ for i in List:
     Var = process(int(i[0]),int(i[1]),int(i[2]),int(i[3]))
     list_proc.append(Var)
 list_proc = sorted(list_proc, key = process.get_arr)
+Memo = memory_Virtual()
 
 #---------------------------------------------------------------#
+while (list_proc != None):
+    arrival = 0
+    while (list_proc[arrival].get_arr() <= atual_clock):
+        #Chamada da função first, best worst
+        arrival += 1        
+    
+    for i in range(len(list_proc)):
+        if atual_clock == list_proc[i].get_end()
+            Memo.out_proce(list_proc[i])
