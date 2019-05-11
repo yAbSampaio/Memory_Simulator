@@ -1,3 +1,4 @@
+
 class process():
     def __init__(self, name, arr, tam, run):
         self.__name = name
@@ -16,6 +17,9 @@ class process():
         return self.__size
         
     def get_ids(self):
+        return self.__name
+
+    def get_name(self):
         return self.__name
 
     def modify_end(self, clock):
@@ -40,39 +44,38 @@ class cell_memory():
 
 class mem_virtual():
     def __init__(self):
-        self.__memory = []
-        self.__memory.append(cell_memory(1024, 0))
+        self.memory = []
+        self.memory.append(cell_memory(1024, 0)) #deveria receber o id do processo?
 
-    def inp_proce(self, proce, clock,id_h):  #input
-        self.__memory[id_h].modify_m(self.__memory[id_h].size() - proce.get_size())
-        if self.__memory[id_h].size() == 0:
-            self.__memory[id_h].pop()
-        self.__memory.insert(id_h, proce)#Arrumar logica do id hole
+    def inp_proce(self, proce, clock, id_h):  #input
+        self.memory[id_h].modify_m(self.memory[id_h].size() - proce.get_size())
+        if self.memory[id_h].size() == 0:
+            self.memory[id_h].pop()
+        self.memory.insert(id_h, proce)#Arrumar logica do id hole
         proce.modify_end(clock)
 
     def out_proce(self, proce):
         pos = self.get_pos(proce)
         sz = proce.get_size()
-        if self.checking(pos-1):
-            self.__memory[pos-1].set_size(sz)
+        if self.checking(pos-1):#Logica da posição na memória
+            self.memory[pos-1].set_size(sz)
             if self.checking(pos+1):
-                self.__memory[pos-1].set_size(self.__memory[pos+1].get_size())
-                self.__memory.pop(pos+1)
-                self.__memory.pop(pos)
+                self.memory[pos-1].set_size(self.memory[pos+1].get_size())
+                self.memory.pop(pos+1)
+                self.memory.pop(pos)
         elif self.checking(pos+1):
-            pos += 1
-            self.__memory[pos-1].set_size(sz)
-            self.__memory.pop(pos-1)
+            self.memory[pos-1].set_size(sz)
+            self.memory.pop(pos)
         else:
-            self.__memory.pop(pos)
-            self.__memory.insert(pos,cell_memory(sz,pos))
+            self.memory.pop(pos)
+            self.memory.insert(pos,cell_memory(sz,pos))
         
     def checking(self,position):
-        if (self.__memory[position] == cell_memory):
+        if (self.memory[position] == cell_memory):
             return True
     def dsc_hole(self):
         hole = []
-        for i in self.__memory:
+        for i in self.memory
             if (i == cell_memory):
                 hole.append(i)
         return hole
@@ -84,6 +87,12 @@ class mem_virtual():
                     return cont
         cont += 1
 
+    def FirstFit(processo, clock):
+        for cell in self.memory:
+            if cell == cell_memory:
+                if cell.get_size() >= processo.get_size():
+                    self.inp_proce(processo, clock, processo.get_name())
+                    return self
 
     def Best_fit(self,processo,clock):
         hole = self.dsc_hole()
