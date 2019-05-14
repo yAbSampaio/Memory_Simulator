@@ -1,6 +1,6 @@
 import random
 
-x = 200
+x = 10
 cont = 1
 with open('process.txt', 'w+') as Process:
     while (cont <= x):
