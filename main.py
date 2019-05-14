@@ -12,8 +12,7 @@ t_medio = 0
 proce = open("process.txt","r")
 List = []
 list_proc = []
-memory_Virtual = []
-memory_Virtual.append(memory(1024))
+Memo = mem_virtual()
 
 for i in proce : #padronização do arquivo
     line=i.split("\n")[0]
@@ -24,7 +23,6 @@ for i in List: #cria lista de classe processo
     Var = process(int(i[0]),int(i[1]),int(i[2]),int(i[3]))
     list_proc.append(Var)
 list_proc = sorted(list_proc, key = process.get_arr)
-Memo = memory_Virtual()
 
 #---------------------------------------------------------------#
 n_wait = 0
@@ -35,5 +33,5 @@ while (list_proc != None):#Enquato haver processo na lista
         n_wait += 1        
     
     for i in range(len(list_proc)):
-        if atual_clock == list_proc[i].get_end()
+        if atual_clock == list_proc[i].get_end():
             Memo.out_proce(list_proc[i])
