@@ -30,6 +30,7 @@ Memo = memory_Virtual()
 n_wait = 0
 while (list_proc != None):#Enquato haver processo na lista 
     while (list_proc[n_wait].get_arr() <= atual_clock):#Fazer lista de espera
+        Memo.FirstFit(processo)
         #Chamada da função first, best worst
         n_wait += 1        
     
