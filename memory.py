@@ -1,7 +1,6 @@
 #coding=utf-8
 from cell import*
 from process import*
-from main import t_wait
 
 class mem_virtual():
     def __init__(self):
@@ -86,7 +85,7 @@ class mem_virtual():
                 self.inp_proce(processo,clock,id)
                 return True
         return False
-
+    
     def FirstFit(self,processo, clock):
         for cell in self.memory:
             if isinstance(cell,cell_memory):
