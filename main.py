@@ -6,9 +6,9 @@ import time
 #------------------------VarGlobais------------------------------------#
 atual_clock = 0
 t_apply = 0
-t_wait = 0
-t_fail = 0
-t_medio = 0
+t_wait = 0 #t_inicio - t_chegada
+t_fail = 0 #tentativas falhas
+t_medio = 0 
 
 #------------------------inicialização---------------------------------#
 
@@ -37,7 +37,7 @@ while (Memo.get_len() != 1 or n_wait < len(list_proc)):#Enquato haver processo n
             #Chamada da função first, best worst
             if(choice == 1):
                 if (Memo.FirstFit(list_proc[n_wait],atual_clock)):
-                    n_wait += 1#Espera
+                    n_wait += 1
                 else:
                     t_fail += 1
                 para += 1
@@ -48,8 +48,11 @@ while (Memo.get_len() != 1 or n_wait < len(list_proc)):#Enquato haver processo n
                     t_fail += 1
                 para += 1
             else:
-                #Memo.WorstFit(list_proc[n_wait],atual_clock)
-                n_wait += 1
+                if(Memo.WorstFit(list_proc[n_wait],atual_clock)):
+                    n_wait += 1#Logica de t wait
+                else:
+                    t_fail += 1
+                para += 1
                 
     for i in range(len(list_proc)):
         if atual_clock == list_proc[i].get_end():

@@ -1,3 +1,4 @@
+#coding=utf-8
 from cell import*
 from process import*
 from main import t_wait
@@ -70,6 +71,16 @@ class mem_virtual():
         hole = self.dsc_hole()
         list_best = sorted(hole, key = cell_memory.get_size)
         for cell in list_best:
+            if (cell.get_size() >= processo.get_size()):
+                id = self.get_id(cell)
+                self.inp_proce(processo,clock,id)
+                return True
+        return False
+    
+    def WorstFit(self,processo, clock):
+        hole = self.dsc_hole()
+        list_worst = sorted(hole, key = cell_memory.get_size,reverse=True)
+        for cell in list_worst:
             if (cell.get_size() >= processo.get_size()):
                 id = self.get_id(cell)
                 self.inp_proce(processo,clock,id)
