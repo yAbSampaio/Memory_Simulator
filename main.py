@@ -11,13 +11,13 @@ t_fail = 0 #tentativas falhas
 t_medio = 0 
 
 #------------------------inicialização---------------------------------#
-choice = int(input("Digite\n1 - First Fit\n2 - Best Fit\n3 - Worst Fit\n"))
-t_medio = time.time()
 proce = open("process.txt","r")
 List = []
 list_proc = []
 Memo = mem_virtual()
 choice = 0
+choice = int(input("Digite\n1 - First Fit\n2 - Best Fit\n3 - Worst Fit\n"))
+t_medio = time.time()
 for i in proce : #padronização do arquivo
     line=i.split("\n")[0]
     cell = line.split(" ")
@@ -50,7 +50,7 @@ while (Memo.get_len() != 1 or n_wait < len(list_proc)):#Enquato haver processo n
                 else:
                     t_fail += 1
                 para += 1
-            else:
+            elif(choice == 3):
                 if(Memo.WorstFit(list_proc[n_wait],atual_clock)):
                     t_wait += atual_clock-list_proc[n_wait].get_arr()
                     n_wait += 1#Logica de t wait
