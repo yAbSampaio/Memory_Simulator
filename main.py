@@ -1,6 +1,5 @@
 #coding= utf -8
 from process import*
-from cell import*
 from memory import*
 import time
 #------------------------VarGlobais------------------------------------#
@@ -64,10 +63,9 @@ while (Memo.get_len() != 1 or n_wait < len(list_proc)):#Enquato haver processo n
     print("-------------")
     print("clock: "+str(atual_clock))
     Memo.printf()
-    print("------")
     print("\n")
     atual_clock += 1
-    #time.sleep(0.7)
+    x = input("")
 print("Numero de falhas "+ str(t_fail))
 a = t_wait/n_wait
 t_medio = time.time()-t_medio

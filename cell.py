@@ -17,3 +17,4 @@ class cell_memory():
         print("Hole")
         print("Tamanho: "+str(self.__size))
         print("id: "+str(self.__id_m))
+        print("--------------------------")
