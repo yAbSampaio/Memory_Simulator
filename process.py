@@ -22,6 +22,13 @@ class process():
         self.__t_end = self.__t_run + clock
     
     def printf(self):
+<<<<<<< HEAD
         print("->Processo")
         print("-Tamanho: "+str(self.__size))
         print("-Tem end: "+str(self.__t_end))
+=======
+        print("Processo: "+str(self.__name))
+        print("Tamanho: "+str(self.__size))
+        print("Tem end: "+str(self.__t_end))
+        print("--------------------------")
+>>>>>>> 305adabbb81dff4e64466034c5a728c7e9d78a0f

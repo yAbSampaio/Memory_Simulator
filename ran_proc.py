@@ -1,8 +1,8 @@
 import random
 
-x = 10
+x = 55
 cont = 1
-with open('process.txt', 'w+') as Process:
+with open('proces.txt', 'w+') as Process:
     while (cont <= x):
         name = cont
         t_arrival = random.randint(1,200)

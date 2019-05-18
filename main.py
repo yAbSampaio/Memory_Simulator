@@ -1,9 +1,16 @@
+<<<<<<< HEAD
 #coding= utf-8
 from process import *
 from cell import *
 from memory import *
 from graphic import *
 
+=======
+#coding= utf -8
+from process import*
+from memory import*
+import time
+>>>>>>> 305adabbb81dff4e64466034c5a728c7e9d78a0f
 #------------------------VarGlobais------------------------------------#
 atual_clock = 0
 t_apply = 0
@@ -12,12 +19,17 @@ t_fail = 0 #tentativas falhas
 t_medio = 0 
 
 #------------------------inicialização---------------------------------#
+<<<<<<< HEAD
 
+=======
+>>>>>>> 305adabbb81dff4e64466034c5a728c7e9d78a0f
 proce = open("process.txt","r")
 List = []
 list_proc = []
 Memo = mem_virtual()
 choice = 0
+choice = int(input("Digite\n1 - First Fit\n2 - Best Fit\n3 - Worst Fit\n"))
+t_medio = time.time()
 for i in proce : #padronização do arquivo
     line=i.split("\n")[0]
     cell = line.split(" ")
@@ -40,11 +52,27 @@ while (Memo.get_len() != 1 or n_wait < len(list_proc)):#Enquato haver processo n
                 Memo.FirstFit(list_proc[n_wait],atual_clock)
                 n_wait += 1
             elif(choice == 2):
+<<<<<<< HEAD
                 Memo.BestFit(list_proc[n_wait],atual_clock)
                 n_wait += 1
             else:
                 #Memo.FirstFit(list_proc[n_wait],atual_clock)
                 n_wait += 1
+=======
+                if(Memo.BestFit(list_proc[n_wait],atual_clock)):
+                    t_wait += atual_clock-list_proc[n_wait].get_arr()
+                    n_wait += 1#Logica de t wait
+                else:
+                    t_fail += 1
+                para += 1
+            elif(choice == 3):
+                if(Memo.WorstFit(list_proc[n_wait],atual_clock)):
+                    t_wait += atual_clock-list_proc[n_wait].get_arr()
+                    n_wait += 1#Logica de t wait
+                else:
+                    t_fail += 1
+                para += 1
+>>>>>>> 305adabbb81dff4e64466034c5a728c7e9d78a0f
                 
     for i in range(len(list_proc)):
         if atual_clock == list_proc[i].get_end():
@@ -54,9 +82,20 @@ while (Memo.get_len() != 1 or n_wait < len(list_proc)):#Enquato haver processo n
     print("-------------")
     print("clock: "+str(atual_clock))
     Memo.printf()
+<<<<<<< HEAD
     input()
     print("------")
     print("\n")
     atual_clock += 1
     Memo.graph(atual_clock)
     
+=======
+    print("\n")
+    atual_clock += 1
+    x = input("")
+print("Numero de falhas "+ str(t_fail))
+a = t_wait/n_wait
+t_medio = time.time()-t_medio
+print("Numero medio de espera "+str(a))
+print("tempo de execução "+str(t_medio))
+>>>>>>> 305adabbb81dff4e64466034c5a728c7e9d78a0f
