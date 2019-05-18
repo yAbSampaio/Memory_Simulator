@@ -23,5 +23,5 @@ class process():
     
     def printf(self):
         print("->Processo")
-        print("->Tamanho: "+str(self.__size))
-        print("->Tem end: "+str(self.__t_end))
+        print("-Tamanho: "+str(self.__size))
+        print("-Tem end: "+str(self.__t_end))
