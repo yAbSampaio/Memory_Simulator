@@ -3,9 +3,8 @@ import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 import matplotlib.ticker as mtick
 from matplotlib import style
-#import main
 import pandas as pd
-from memory import *
+from memory import*
 
 style.use('fivethirtyeight')
 def graph(self,clock):

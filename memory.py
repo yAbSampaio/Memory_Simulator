@@ -19,17 +19,17 @@ class mem_virtual():
         mem = []
         clock_list = []
         for i in self.memory:
-            if i is cell_memory:
+            if isinstance(i,cell_memory):
                 for j in range(i.get_size()):
                     mem.append('F')
                     clock_list.append(clock)
-            if i is process:
+            elif isinstance(i,process):
                 for j in range(i.get_size()):
                     mem.append('O')
                     clock_list.append(clock)
         return clock_list,mem
 
-    style.use('fivethirtyeight')
+    #style.use('fivethirtyeight')
     
     def graph(self,clock):
         xs,ys = self.mem_reciever(clock)
