@@ -45,7 +45,7 @@ class mem_virtual():
         ).unstack().plot(kind='bar',stacked=True,legend='reverse')
 
         plt.gca().yaxis.set_major_formatter(mtick.PercentFormatter())
-        plt.title('Amount of records by Gender and State, normalized')
+        plt.title('Process memory')
         # plt.legend(loc='lower right')
         plt.gcf().set_size_inches(7,4)
         plt.show()

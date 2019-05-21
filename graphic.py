@@ -8,7 +8,7 @@ import pandas as pd
 from memory import *
 
 style.use('fivethirtyeight')
-def graph(mem,clock):
+def graph(self,clock):
     xs,ys = mem.mem_reciever(clock)
 
     df = pd.DataFrame({
