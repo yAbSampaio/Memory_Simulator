@@ -1,7 +1,7 @@
 #coding= utf-8
-from graphic import*
-from process import*
-from memory import*
+#from graphic import *
+from process import *
+from memory import *
 import time
 #------------------------VarGlobais------------------------------------#
 atual_clock = 0
@@ -9,6 +9,26 @@ t_apply = 0
 t_wait = 0 #t_inicio_clock - t_chegada
 t_fail = 0 #tentativas falhas
 t_medio = 0 
+
+#------------------------Tentativa 2------------------------------------#
+falhas = []
+t_espera = []
+t_clock = []
+
+def import_falhas(f):
+    falhas.append(f)
+
+def import_espera(e):
+    t_espera.append(e)
+
+def import_clock(c):
+    t_clock.append(c)
+
+def my_graph():
+    xs = falhas
+    ys = t_clock
+
+    plt.plot(xs,ys)
 
 #------------------------inicialização---------------------------------#
 proce = open("process.txt","r")
@@ -51,6 +71,9 @@ while (Memo.get_len() != 1 or n_wait < len(list_proc)):#Enquato haver processo n
                     n_wait += 1#Logica de t wait
                 else:
                     t_fail += 1
+        import_falhas(t_fail)
+        import_espera(t_wait)
+        import_clock(atual_clock)
                 
     for i in range(len(list_proc)):
         if atual_clock == list_proc[i].get_end():
@@ -60,13 +83,15 @@ while (Memo.get_len() != 1 or n_wait < len(list_proc)):#Enquato haver processo n
     print("-------------")
     print("clock: "+str(atual_clock))
     Memo.printf()
-    input()
+    #input()
     print("------")
     print("\n")
     atual_clock += 1
-    Memo.graph(atual_clock)
+    #Memo.graph(atual_clock)
 print("Numero de falhas "+ str(t_fail))
 a = t_wait/n_wait
 t_medio = time.time()-t_medio
 print("Numero medio de espera "+str(a))
 print("tempo de execução "+str(t_medio))
+
+my_graph()
