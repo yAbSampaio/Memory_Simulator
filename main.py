@@ -14,20 +14,20 @@ t_medio = 0
 falhas = []
 t_espera = []
 t_clock = []
-
+#importa falhas no ciclo de clock
 def import_falhas(f):
     falhas.append(f)
-
+#importa espera no ciclo de clock
 def import_espera(e):
     t_espera.append(e)
-
+#importa clock no final
 def import_clock(c):
     t_clock.append(c)
-
-def my_graph():
+#importa falhas por clock
+def my_graph_falhas():
     xs = falhas
     ys = t_clock
-
+    #plota x e y
     plt.plot(xs,ys)
 
 #------------------------inicialização---------------------------------#
@@ -93,5 +93,5 @@ a = t_wait/n_wait
 t_medio = time.time()-t_medio
 print("Numero medio de espera "+str(a))
 print("tempo de execução "+str(t_medio))
-
-my_graph()
+#chama a função
+my_graph_falhas()

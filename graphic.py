@@ -25,7 +25,7 @@ def my_graph():
 
     plt.plot(xs,ys)
 
-'''
+''' #Grafico de processos
     def mem_status(self,clock):
         mem = [] 
         clock_list = []
