@@ -1,9 +1,9 @@
 class process():
-    def __init__(self, name, arr,run, tam):
+    def __init__(self, name, arr, run, tam):
         self.__name = name
-        self.__t_arrival = arr
-        self.__size = tam
-        self.__t_run = run
+        self.__t_arrival = int(arr)
+        self.__size = int(tam)
+        self.__t_run = int(run)
         self.__t_end = None
 
     def get_arr(self):

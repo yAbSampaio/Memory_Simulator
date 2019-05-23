@@ -18,7 +18,7 @@ class mem_virtual():
     def inp_proce(self, proce, clock, id_h):  #input
         self.memory[id_h].modify(self.memory[id_h].get_size() - proce.get_size())
         if self.memory[id_h].get_size() == 0:
-            self.memory[id_h].pop()
+            self.memory.pop(id_h)
         self.memory.insert(id_h, proce)
         proce.modify(clock)
 
