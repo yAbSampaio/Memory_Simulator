@@ -8,7 +8,8 @@ atual_clock = 0
 t_apply = 0
 t_wait = 0 #t_inicio_clock - t_chegada
 t_fail = 0 #tentativas falhas
-t_medio = 0 
+t_medio = 0 #tempo médio
+contador_ = 0 #contador
 
 #------------------------Tentativa 2------------------------------------#
 falhas = []
@@ -32,11 +33,10 @@ def my_graph_falhas():
 
 #------------------------inicialização---------------------------------#
 proce = open("process.txt","r")
-List = []
-list_proc = []
-Memo = mem_virtual()
+List = [] #temporária para padronizar
+list_proc = [] #lista de processos padronizados
+Memo = mem_virtual() #memória virtual
 choice = 0
-choice = int(input("Digite\n1 - First Fit\n2 - Best Fit\n3 - Worst Fit\n"))
 t_medio = time.time()
 for i in proce : #padronização do arquivo
     line=i.split("\n")[0]
@@ -45,43 +45,48 @@ for i in proce : #padronização do arquivo
     
 for i in List: #cria lista de classe processo
     Var = process(int(i[0]),int(i[1]),int(i[2]),int(i[3]))
-    list_proc.append(Var)
-list_proc = sorted(list_proc, key = process.get_arr)
-choice = int(input("Digite\n1 - First Fit\n2 - Best Fit\n3 - Worst Fit\n"))
-
+    list_proc.append(Var) #adiciona processos na lista de processos
+list_proc = sorted(list_proc, key = process.get_arr) #ordena ascendente os processos por tempo de chegada
+print("* --------------------- Simulador de Memória ---------------------- *")
+choice = int(input("|Digite a opção de qual algoritmo deseja testar:\n|(1) First Fit\n|(2) Best Fit\n|(3) Worst Fit\n* --------------------- Simulador de Memória ---------------------- *\n|Opção: "))
 #---------------------------------------------------------------#
-#Arruma logica de parada
-n_wait = 0
-while (Memo.get_len() != 1 or n_wait < len(list_proc)):#Enquato haver processo na lista 
-    if(n_wait < len(list_proc)):
-        while ((n_wait < len(list_proc)) and (list_proc[n_wait].get_arr() <= atual_clock)):#Fazer lista de espera
+while (Memo.get_len() != 1 or contador_ < len(list_proc)): #Enquanto houver processos na lista 
+    if(contador_ < len(list_proc)):
+        while ((contador_ < len(list_proc)) and (list_proc[contador_].get_arr() <= atual_clock)):#Fazer lista de espera
             #Chamada da função first, best worst
-            if(choice == 1):
-                Memo.FirstFit(list_proc[n_wait],atual_clock)
-                n_wait += 1
-            elif(choice == 2):
-                if(Memo.BestFit(list_proc[n_wait],atual_clock)):
-                    t_wait += atual_clock-list_proc[n_wait].get_arr()
-                    n_wait += 1#Logica de t wait
+            if(choice == 1): #*------First Fit --------*#
+                if(Memo.FirstFit(list_proc[contador_],atual_clock)):
+                    t_wait += atual_clock - list_proc[contador_].get_arr()
+                    contador_ += 1
                 else:
                     t_fail += 1
-            elif(choice == 3):
-                if(Memo.WorstFit(list_proc[n_wait],atual_clock)):
-                    t_wait += atual_clock-list_proc[n_wait].get_arr()
-                    n_wait += 1#Logica de t wait
+                    # Fazer logica fila de espera
+            elif(choice == 2):#*------Best Fit --------*#              
+                if(Memo.BestFit(list_proc[contador_],atual_clock)):
+                    t_wait += atual_clock-list_proc[contador_].get_arr()
+                    contador_ += 1 #Logica de t wait
+                    # Fazer logica fila de espera
                 else:
                     t_fail += 1
-        import_falhas(t_fail)
-        import_espera(t_wait)
-        import_clock(atual_clock)
-                
-    for i in range(len(list_proc)):
+                    contador_ += 1
+            elif(choice == 3):#*------Worst Fit --------*#
+                if(Memo.WorstFit(list_proc[contador_],atual_clock)):
+                    t_wait += atual_clock-list_proc[contador_].get_arr()
+                    contador_ += 1 #Logica de t wait
+                else:
+                    t_fail += 1
+                    contador_ += 1
+                # Fazer logica fila de espera
+        #import_falhas(t_fail)
+        #import_espera(t_wait)
+        #import_clock(atual_clock)
+    for i in range(len(list_proc)): #Remove o processo se acabou de executar
         if atual_clock == list_proc[i].get_end():
             Memo.out_proce(list_proc[i])
             #list_proc[i].pop()
     
     print("-------------")
-    print("clock: "+str(atual_clock))
+    print("Clock: "+str(atual_clock))
     Memo.printf()
     #input()
     print("------")
@@ -89,9 +94,9 @@ while (Memo.get_len() != 1 or n_wait < len(list_proc)):#Enquato haver processo n
     atual_clock += 1
     #Memo.graph(atual_clock)
 print("Numero de falhas "+ str(t_fail))
-a = t_wait/n_wait
+a = t_wait/contador_
 t_medio = time.time()-t_medio
 print("Numero medio de espera "+str(a))
 print("tempo de execução "+str(t_medio))
 #chama a função
-my_graph_falhas()
+#my_graph_falhas()
