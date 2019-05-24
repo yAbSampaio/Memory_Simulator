@@ -65,7 +65,7 @@ while (Memo.get_len() != 1 or contador_proc < len(list_proc)): #Enquanto houver 
                     contador_proc += 1
                 else:
                     t_fail += 1
-            elif(Memo.FirstFit(list_proc[contador_proc],atual_clock)):
+            if(Memo.FirstFit(list_proc[contador_proc],atual_clock)):
                 t_wait += atual_clock-list_proc[contador_proc].get_arr()
                 contador_proc += 1
             else:
@@ -80,7 +80,7 @@ while (Memo.get_len() != 1 or contador_proc < len(list_proc)): #Enquanto houver 
                     contador_proc += 1
                 else:
                     t_fail += 1
-            elif(Memo.BestFit(list_proc[contador_proc],atual_clock)):
+            if(Memo.BestFit(list_proc[contador_proc],atual_clock)):
                 t_wait += atual_clock-list_proc[contador_proc].get_arr()
                 contador_proc += 1 #Logica de t wait
                 # Fazer logica fila de espera
@@ -97,8 +97,9 @@ while (Memo.get_len() != 1 or contador_proc < len(list_proc)): #Enquanto houver 
                     contador_proc += 1
                 else:
                     t_fail += 1
-            elif(Memo.WorstFit(list_proc[contador_proc],atual_clock)):
+            if(Memo.WorstFit(list_proc[contador_proc],atual_clock)):
                 t_wait += atual_clock-list_proc[contador_proc].get_arr()
+                print("Espera " + str(t_wait))
                 contador_proc += 1 #Logica de t wait
             else:
                 t_fail += 1
