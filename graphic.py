@@ -5,7 +5,7 @@ import matplotlib.ticker as mtick
 from matplotlib import style
 import pandas as pd
 from memory import*
-from dsutil import plotting
+#from dsutil import plotting
 
 '''
 style.use('fivethirtyeight')
@@ -28,7 +28,29 @@ def graph(mem,clock):
     plt.show()'''
 
 def mem_reciever(self,clock):
-        mem = []
+    mem = []
+    falhas = []
+    t_espera = []
+    t_clock = []
+
+def import_falhas(f):
+    falhas.append(f)
+
+def import_espera(e):
+    t_espera.append(e)
+
+def import_clock(c):
+    t_clock.append(c)
+
+def my_graph():
+    xs = falhas
+    ys = t_clock
+
+    plt.plot(xs,ys)
+
+''' #Grafico de processos
+    def mem_status(self,clock):
+        mem = [] 
         clock_list = []
         for i in self.memory:
             if isinstance(i,cell_memory):
@@ -42,7 +64,8 @@ def mem_reciever(self,clock):
         return clock_list,mem
 
     #style.use('fivethirtyeight')
-    
+   
+
     def graph(self,clock):
         xs,ys = self.mem_reciever(clock)
 
@@ -57,8 +80,8 @@ def mem_reciever(self,clock):
         ).unstack().plot(kind='bar',stacked=True,legend='reverse')
 
         plt.gca().yaxis.set_major_formatter(mtick.PercentFormatter())
-        plt.title('Amount of records by Gender and State, normalized')
+        plt.title('Process memory')
         # plt.legend(loc='lower right')
         plt.gcf().set_size_inches(7,4)
         plt.show()
-
+'''
