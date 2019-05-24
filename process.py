@@ -24,5 +24,6 @@ class process():
     def printf(self):
         print("Processo: "+str(self.__name))
         print("Tamanho: "+str(self.__size))
+        print("Tempo: "+str(self.__t_arrival))
         print("Tem end: "+str(self.__t_end))
         print("--------------------------")
