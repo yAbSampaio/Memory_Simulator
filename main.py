@@ -80,10 +80,21 @@ while (Memo.get_len() != 1 or cont < len(list_proc)):#Enquato haver processo na 
     print("\n")
     atual_clock += 1
     
-grafs.my_graph()
+print("* --------------------- Simulador de Memória ---------------------- *")
+choice2 = int(input("|Digite a opção de gráfico deseja analisar:\n|(1) Falhas\n|(2) Espera\n|(3) Alocação\n|(4) Encerrar \n* --------------------- Simulador de Memória ---------------------- *\n|Opção: "))
 
-print("Numero de falhas "+ str(n_try))
-t_wait = n_try/cont
-t_medio = time.time()-t_medio
-print("Numero medio de espera "+str(t_wait))
+while(choice2 != 4):
+    if(choice2 == 1):
+        grafs.my_graph_falhas()
+        print("Número de falhas "+ str(n_try))
+    if(choice2 == 2):
+        t_wait = n_try/cont
+        print("Número médio de espera "+str(t_wait))
+        grafs.my_graph_espera()
+    if(choice2 == 3):
+        t_medio = time.time()-t_medio
+    choice2 = int(input("|Digite a opção de gráfico deseja analisar:\n|(1) Falhas\n|(2) Espera\n|(3) Alocação\n|(4) Encerrar \n* --------------------- Simulador de Memória ---------------------- *\n|Opção: "))
+
+
+
 print("Tempo de execução "+str(t_medio))

@@ -21,17 +21,23 @@ class graficos():
         def import_clock(self,c):
             self.t_clock.append(c)
 
-        def my_graph(self):
-            style.use('fivethirtyeight')
+        def my_graph_falhas(self):
+            style.use('Solarize_Light2')
             ys = self.falhas
             xs = self.t_clock
-
-            print (xs)
-            print (ys)
             plt.xlabel('Clock')
             plt.ylabel('Falhas')
             plt.plot(xs,ys)
             plt.show()
+
+        def my_graph_espera(self):
+            ys = self.t_espera
+            xs = self.t_clock
+            plt.xlabel('Espera')
+            plt.ylabel('Falhas')
+            plt.plot(xs,ys)
+            plt.show()
+    
 
 ''' #Grafico de processos
     def mem_status(self,clock):
