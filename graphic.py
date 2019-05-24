@@ -5,48 +5,33 @@ import matplotlib.ticker as mtick
 from matplotlib import style
 import pandas as pd
 from memory import*
-#from dsutil import plotting
 
-'''
-style.use('fivethirtyeight')
-def graph(mem,clock):
-    xs,ys = mem.mem_reciever(clock)
+class graficos():
+        def __init__(self):
+            self.falhas = []
+            self.t_espera = []
+            self.t_clock = []
 
-    df = pd.DataFrame({
-        'time':xs,
-        'process':ys,
-    })
+        def import_falhas(self,f):
+            self.falhas.append(f)
 
-    df.groupby(['time','process']).size().groupby(level=0).apply(
-        lambda x: 100 * x / x.sum()
-    ).unstack().plot(kind='bar',stacked=True,legend='reverse')
+        def import_espera(self,e):
+            self.t_espera.append(e)
 
-    plt.gca().yaxis.set_major_formatter(mtick.PercentFormatter())
-    plt.title('Amount of records by Gender and State, normalized')
-    # plt.legend(loc='lower right')
-    plt.gcf().set_size_inches(7,4)
-    plt.show()'''
+        def import_clock(self,c):
+            self.t_clock.append(c)
 
-def mem_reciever(self,clock):
-    mem = []
-    falhas = []
-    t_espera = []
-    t_clock = []
+        def my_graph(self):
+            style.use('fivethirtyeight')
+            ys = self.falhas
+            xs = self.t_clock
 
-def import_falhas(f):
-    falhas.append(f)
-
-def import_espera(e):
-    t_espera.append(e)
-
-def import_clock(c):
-    t_clock.append(c)
-
-def my_graph():
-    xs = falhas
-    ys = t_clock
-
-    plt.plot(xs,ys)
+            print (xs)
+            print (ys)
+            plt.xlabel('Clock')
+            plt.ylabel('Falhas')
+            plt.plot(xs,ys)
+            plt.show()
 
 ''' #Grafico de processos
     def mem_status(self,clock):

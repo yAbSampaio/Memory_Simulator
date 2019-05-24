@@ -2,7 +2,9 @@
 #from graphic import*
 from process import*
 from memory import*
+from graphic import *
 import time
+
 #------------------------VarGlobais------------------------------------#
 atual_clock = 0
 t_apply = 0
@@ -11,6 +13,7 @@ t_fail = 0 #tentativas falhas
 t_medio = 0 #tempo médio
 cont = 0 #contador
 n_try = 0
+grafs = graficos()
 #------------------------inicialização---------------------------------#
 
 proce = open("process.txt","r")
@@ -60,6 +63,10 @@ while (Memo.get_len() != 1 or cont < len(list_proc)):#Enquato haver processo na 
                 cont += 1
             else:
                 control = False
+
+    grafs.import_falhas(n_try)
+    #grafs.import_espera()
+    grafs.import_clock(atual_clock)
                 
     for i in range(len(list_proc)):#Remove o processo se acabou de executar
         if atual_clock == list_proc[i].get_end():
@@ -72,7 +79,9 @@ while (Memo.get_len() != 1 or cont < len(list_proc)):#Enquato haver processo na 
     print("-------------")
     print("\n")
     atual_clock += 1
-    #Memo.graph(atual_clock)
+    
+grafs.my_graph()
+
 print("Numero de falhas "+ str(n_try))
 t_wait = n_try/cont
 t_medio = time.time()-t_medio
