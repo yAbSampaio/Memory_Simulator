@@ -25,9 +25,8 @@ class graficos():
             style.use('fivethirtyeight')
             ys = self.falhas
             xs = self.t_clock
-
-            print (xs)
-            print (ys)
+#            print (xs)
+ #           print (ys)
             plt.xlabel('Clock')
             plt.ylabel('Falhas')
             plt.plot(xs,ys)
