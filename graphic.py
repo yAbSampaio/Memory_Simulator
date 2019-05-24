@@ -6,24 +6,32 @@ from matplotlib import style
 import pandas as pd
 from memory import*
 
-falhas = []
-t_espera = []
-t_clock = []
+class graficos():
+        def __init__(self):
+            self.falhas = []
+            self.t_espera = []
+            self.t_clock = []
 
-def import_falhas(f):
-    falhas.append(f)
+        def import_falhas(self,f):
+            self.falhas.append(f)
 
-def import_espera(e):
-    t_espera.append(e)
+        def import_espera(self,e):
+            self.t_espera.append(e)
 
-def import_clock(c):
-    t_clock.append(c)
+        def import_clock(self,c):
+            self.t_clock.append(c)
 
-def my_graph():
-    xs = falhas
-    ys = t_clock
+        def my_graph(self):
+            style.use('fivethirtyeight')
+            ys = self.falhas
+            xs = self.t_clock
 
-    plt.plot(xs,ys)
+            print (xs)
+            print (ys)
+            plt.xlabel('Clock')
+            plt.ylabel('Falhas')
+            plt.plot(xs,ys)
+            plt.show()
 
 ''' #Grafico de processos
     def mem_status(self,clock):

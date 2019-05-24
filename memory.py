@@ -1,13 +1,6 @@
 #coding=utf-8
 from cell import*
 from process import*
-import matplotlib.pyplot as plt
-import numpy as np
-import pandas as pd
-from dsutil import plotting
-import matplotlib.animation as animation
-import matplotlib.ticker as mtick
-from matplotlib import style
 
 class mem_virtual():
     def __init__(self):
