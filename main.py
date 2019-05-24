@@ -68,7 +68,7 @@ while (Memo.get_len() != 1 or cont < len(list_proc)):#Enquato haver processo na 
     print("-------------")
     print("Clock: "+str(atual_clock))
     Memo.printf()
-    #input("")
+    input("")
     print("-------------")
     print("\n")
     atual_clock += 1
