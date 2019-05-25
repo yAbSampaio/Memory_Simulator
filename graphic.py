@@ -59,7 +59,13 @@ class graficos():
 class Interface():
     
     def __init__(self):
-        self.__menu = GraphWin("menu",1024,500)
+        self.__simulator = GraphWin("Memória",1024,500)
+        self.__simulator.setBackground('white')
+        self.Title = Text(Point(500, 50), 'Simulador de Memória')
+        self.Title.setFace("times roman")
+        self.Title.setSize(28)
+        self.Title.setStyle("bold")
+        self.Title.draw(self.__simulator)
         self.List = []
 
     def atualizar(self,number,mem):
@@ -68,19 +74,19 @@ class Interface():
         while len(self.List) != 0:
             self.List.pop(0) 
         number += 1
-        pt_central = (1024/(number))
+        pt_central = (1000/(number))
         pt1 = pt_central-((mem.get_size(0)/2)*0.75)
         for i in range(number-1):
             pt2 = pt_central+((mem.get_size(i)/2)*0.75)
-            self.List.append(Rectangle(Point(pt1, 200), Point(pt2,300)))
+            self.List.append(Rectangle(Point(pt1, 350), Point(pt2,450)))
             pt_central += (1024/(number))*0.75
             pt1 = pt2
             if mem.get_obj(i) == 1:
                 self.List[i].setFill('blue')
-                self.List[i].draw(self.__menu)
+                self.List[i].draw(self.__simulator)
             else:
                 self.List[i].setFill('yellow')
-                self.List[i].draw(self.__menu)
+                self.List[i].draw(self.__simulator)
 
     def close(self):
-        self.__menu.close()
+        self.__simulator.close()

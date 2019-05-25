@@ -7,7 +7,7 @@ import time
 atual_clock = 0
 t_apply = 0
 t_wait = 0 #t_inicio_clock - t_chegada
-t_fail = 0 #tentativas falhas
+Var.t_fail = 0 #tentativas falhas
 t_medio = 0 #tempo médio
 contador_proc = 0 #contador
 
@@ -64,12 +64,12 @@ while (Memo.get_len() != 1 or contador_proc < len(list_proc)): #Enquanto houver 
                     list_espera.pop(0)
                     contador_proc += 1
                 else:
-                    t_fail += 1
+                    Var.t_fail += 1
             elif(Memo.FirstFit(list_proc[contador_proc],atual_clock)):
                 t_wait += atual_clock-list_proc[contador_proc].get_arr()
                 contador_proc += 1
             else:
-                t_fail += 1
+                Var.t_fail += 1
                 list_espera.append(list_proc[contador_proc])
                 # Fazer logica fila de espera
         elif(choice == 2):#*------Best Fit --------*#              
@@ -79,13 +79,13 @@ while (Memo.get_len() != 1 or contador_proc < len(list_proc)): #Enquanto houver 
                     list_espera.pop(0)
                     contador_proc += 1
                 else:
-                    t_fail += 1
+                    Var.t_fail += 1
             elif(Memo.BestFit(list_proc[contador_proc],atual_clock)):
                 t_wait += atual_clock-list_proc[contador_proc].get_arr()
                 contador_proc += 1 #Logica de t wait
                 # Fazer logica fila de espera
             else:
-                t_fail += 1
+                Var.t_fail += 1
                 list_espera.append(list_proc[contador_proc])
                 #contador_proc += 1
         elif(choice == 3):#*------Worst Fit --------*#
@@ -96,16 +96,16 @@ while (Memo.get_len() != 1 or contador_proc < len(list_proc)): #Enquanto houver 
                     list_espera.pop(0)
                     contador_proc += 1
                 else:
-                    t_fail += 1
+                    Var.t_fail += 1
             elif(Memo.WorstFit(list_proc[contador_proc],atual_clock)):
                 t_wait += atual_clock-list_proc[contador_proc].get_arr()
                 contador_proc += 1 #Logica de t wait
             else:
-                t_fail += 1
+                Var.t_fail += 1
                 list_espera.append(list_proc[contador_proc])
                 #contador_proc += 1
             # Fazer logica fila de espera
-    #import_falhas(t_fail)
+    #import_falhas(Var.t_fail)
     #import_espera(t_wait)
     #import_clock(atual_clock)
     for i in range(len(list_proc)): #Remove o processo se acabou de executar
@@ -121,7 +121,7 @@ while (Memo.get_len() != 1 or contador_proc < len(list_proc)): #Enquanto houver 
     print("\n")
     atual_clock += 1
     #Memo.graph(atual_clock)
-print("Numero de falhas "+ str(t_fail))
+print("Numero de falhas "+ str(Var.t_fail))
 a = t_wait/contador_proc
 t_medio = atual_clock/contador_proc
 print("Numero medio de espera "+str(a))

@@ -7,24 +7,22 @@ import time
 
 #------------------------VarGlobais------------------------------------#
 atual_clock = 0
-media = 0
 t_wait = 0 #t_inicio_clock - t_chegada
 t_fail = 0 #tentativas falhas
 t_medio = 0 #tempo médio
 contador_proc = 0 #contador
 n_try = 0
 wait = 0
-grafs = graficos()
-interf = Interface()
+List = [] #temporária para padronizar
+list_proc = [] #lista de processos padronizados
 #------------------------inicialização---------------------------------#
 
 proce = open("process.txt","r")
-List = [] #temporária para padronizar
-list_proc = [] #lista de processos padronizados
-list_espera = []
+grafs = graficos()
+interf = Interface()
 Memo = mem_virtual() #memória virtual
 interf.atualizar(Memo.get_len(),Memo)
-choice = 0
+
 print("* --------------------- Simulador de Memória ---------------------- *")
 choice = int(input("|Digite a opção de qual algoritmo deseja testar:\n|(1) First Fit\n|(2) Best Fit\n|(3) Worst Fit\n* --------------------- Simulador de Memória ---------------------- *\n|Opção: "))
 
@@ -79,21 +77,19 @@ while (Memo.get_len() != 1 or contador_proc < len(list_proc)):#Enquato haver pro
             else:
                 n_try += 1
                 control += 1
-        
-
-    grafs.import_falhas(n_try)
-    grafs.import_clock(atual_clock)
-    grafs.import_buraco(len(Memo.dsc_hole()))
-                
+                    
     for i in range(len(list_proc)):#Remove o processo se acabou de executar
         if atual_clock == list_proc[i].get_end():
             Memo.out_proce(list_proc[i])
     
+    grafs.import_falhas(n_try)
+    grafs.import_clock(atual_clock)
+    grafs.import_buraco(len(Memo.dsc_hole()))
     print("-------------")
     print("Clock: "+str(atual_clock))
     Memo.printf()
     interf.atualizar(Memo.get_len(),Memo)
-    input("")
+    #input("")
     print("-------------")
     print("\n")
     atual_clock += 1
