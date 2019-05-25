@@ -15,6 +15,7 @@ contador_proc = 0 #contador
 n_try = 0
 wait = 0
 grafs = graficos()
+interf = Interface()
 #------------------------inicialização---------------------------------#
 
 proce = open("process.txt","r")
@@ -22,8 +23,8 @@ List = [] #temporária para padronizar
 list_proc = [] #lista de processos padronizados
 list_espera = []
 Memo = mem_virtual() #memória virtual
+interf.atualizar(Memo.get_len(),Memo)
 choice = 0
-
 print("* --------------------- Simulador de Memória ---------------------- *")
 choice = int(input("|Digite a opção de qual algoritmo deseja testar:\n|(1) First Fit\n|(2) Best Fit\n|(3) Worst Fit\n* --------------------- Simulador de Memória ---------------------- *\n|Opção: "))
 
@@ -81,7 +82,6 @@ while (Memo.get_len() != 1 or contador_proc < len(list_proc)):#Enquato haver pro
         
 
     grafs.import_falhas(n_try)
-    #media = t_wait/(contador_proc+1)
     grafs.import_clock(atual_clock)
     grafs.import_buraco(len(Memo.dsc_hole()))
                 
@@ -92,7 +92,8 @@ while (Memo.get_len() != 1 or contador_proc < len(list_proc)):#Enquato haver pro
     print("-------------")
     print("Clock: "+str(atual_clock))
     Memo.printf()
-    #input("")
+    interf.atualizar(Memo.get_len(),Memo)
+    input("")
     print("-------------")
     print("\n")
     atual_clock += 1
@@ -101,7 +102,7 @@ while (Memo.get_len() != 1 or contador_proc < len(list_proc)):#Enquato haver pro
     
 print("* --------------------- Simulador de Memória ---------------------- *")
 choice2 = int(input("|Digite a opção de gráfico deseja analisar:\n|(1) Falhas\n|(2) Espera\n|(3) Fragmentação\n|(4) Encerrar \n* --------------------- Simulador de Memória ---------------------- *\n|Opção: "))
-
+interf.close()
 while(choice2 != 4):
     if(choice2 == 1):
         grafs.my_graph_falhas()

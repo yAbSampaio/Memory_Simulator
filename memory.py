@@ -60,6 +60,14 @@ class mem_virtual():
     def get_len(self):
         return len(self.memory)
 
+    def get_obj(self,pos):
+        if (isinstance(self.memory[pos],process)):
+            return 1
+        return 0
+
+    def get_size(self,pos):
+        return self.memory[pos].get_size()
+
     def get_id(self,hol):
         for i in range(len(self.memory)):
             if isinstance(self.memory[i],cell_memory):
