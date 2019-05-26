@@ -177,6 +177,7 @@ class Interface():
 
     def input_p(self,proce, pos):
         Rec = Rectangle(Point(400, 200), Point(550,300))
+        Rec.setFill(color_rgb(255,154,154))
         Rec.draw(self.__simulator)
         Linha = Line(Rec.getCenter(),self.List_Hole[pos].getCenter())
         Id = Text(Point(475, 225), 'Id: '+str(proce.get_ids()))
@@ -184,18 +185,29 @@ class Interface():
         Linha.draw(self.__simulator)
         Id.draw(self.__simulator)
         Tam.draw(self.__simulator)
-        time.sleep(0.75)
+        #time.sleep(0.75)
         Rec.undraw()
         Linha.undraw()
         Id.undraw()
         Tam.undraw()
     
-
+    def outp(self,id,mem):
+        self.List_Hole[id].undraw()
+        self.List_Hole[id].setFill('white')
+        self.List_Hole[id].draw(self.__simulator)
+        Rec = Rectangle(Point(400, 475), Point(550,575))
+        Rec.setFill(color_rgb(192,192,192))
+        Rec.draw(self.__simulator)
+        Id = Text(Point(475, 500), 'Id: '+str(mem.get_ids(id)))
+        Tam = Text(Point(475, 525), 'Tam: '+str(mem.get_size(id)))
+        Id.draw(self.__simulator)
+        Tam.draw(self.__simulator)
+        input()
+        Rec.undraw()
+        Id.undraw()
+        Tam.undraw()
 #criar um menu na main pra escolher os first fit etc
 #qnd acabar mostrar botao na memoria pra fechar e trocar o menu pra escolher os graficos
 #uma seta pra controlar o clock pra avancar 
-#input mostrar o processo que vai entrar e usar um control pra q qnd der falso uma vez nao procequir mostrando os outros#com if dentro do while de entrada
-        #e dps mostrar a memoria att com o precesso na memoria
-                #tentar mostrar setas de tentativa provavelmente nas funcoes colocando as setas e apagando
 #output trocar cor do processo q irar sair apagar o id da memoria e dps colocar um retangulo de msm tamanho embaixo
         #dps att memoria

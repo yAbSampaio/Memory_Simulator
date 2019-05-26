@@ -45,7 +45,9 @@ while (Memo.get_len() != 1 or contador_proc < len(list_proc)):#Enquato haver pro
     while (contador_proc < len(list_proc) and (list_proc[control].get_arr() <= atual_clock) ):#Fazer lista de espera
         #Chamada da função first, best worst
         if(choice == 1):#*------First Fit --------*#
-            if(Memo.FirstFit(list_proc[contador_proc],atual_clock)):
+            interf.atualizar(Memo.get_len(),Memo,atual_clock)
+            if(Memo.FirstFit(list_proc[contador_proc],atual_clock,interf,contr)):
+                interf.atualizar(Memo.get_len(),Memo,atual_clock)
                 t_wait += atual_clock-list_proc[contador_proc].get_arr()
                 wait = atual_clock-list_proc[contador_proc].get_arr()
                 grafs.import_espera(wait)
@@ -58,7 +60,9 @@ while (Memo.get_len() != 1 or contador_proc < len(list_proc)):#Enquato haver pro
                 control += 1
 
         elif(choice == 2):#*------Best Fit --------*#
-            if(Memo.BestFit(list_proc[contador_proc],atual_clock)):
+            interf.atualizar(Memo.get_len(),Memo,atual_clock)
+            if(Memo.BestFit(list_proc[contador_proc],atual_clock,interf,contr)):
+                interf.atualizar(Memo.get_len(),Memo,atual_clock)
                 t_wait += atual_clock-list_proc[contador_proc].get_arr()
                 wait = atual_clock-list_proc[contador_proc].get_arr()
                 grafs.import_espera(wait)
@@ -66,10 +70,13 @@ while (Memo.get_len() != 1 or contador_proc < len(list_proc)):#Enquato haver pro
                 contador_proc += 1
                 control += 1
             else:
+                contr = False
                 n_try += 1
                 control += 1
         elif(choice == 3):#*------Worst Fit --------*#
-            if(Memo.WorstFit(list_proc[contador_proc],atual_clock)):
+            interf.atualizar(Memo.get_len(),Memo,atual_clock)
+            if(Memo.WorstFit(list_proc[contador_proc],atual_clock,interf,contr)):
+                interf.atualizar(Memo.get_len(),Memo,atual_clock)
                 t_wait += atual_clock-list_proc[contador_proc].get_arr()
                 wait = atual_clock-list_proc[contador_proc].get_arr()
                 grafs.import_espera(wait)
@@ -77,21 +84,24 @@ while (Memo.get_len() != 1 or contador_proc < len(list_proc)):#Enquato haver pro
                 contador_proc += 1
                 control += 1
             else:
+                contr = False
                 n_try += 1
                 control += 1
                     
     for i in range(len(list_proc)):#Remove o processo se acabou de executar
         if atual_clock == list_proc[i].get_end():
+            interf.outp(Memo.get_pos(list_proc[i]),Memo)
             Memo.out_proce(list_proc[i])
-    
+            interf.atualizar(Memo.get_len(),Memo,atual_clock)
+
+    interf.atualizar(Memo.get_len(),Memo,atual_clock)
     grafs.import_falhas(n_try)
     grafs.import_clock(atual_clock)
     grafs.import_buraco(len(Memo.dsc_hole()))
     print("-------------")
     print("Clock: "+str(atual_clock))
     Memo.printf()
-    interf.atualizar(Memo.get_len(),Memo,atual_clock)
-    input("")
+    #input("")
     print("-------------")
     print("\n")
     atual_clock += 1
