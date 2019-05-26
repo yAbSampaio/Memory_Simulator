@@ -90,3 +90,15 @@ class Interface():
 
     def close(self):
         self.__simulator.close()
+#criar um menu na main pra escolher os first fit etc
+#qnd acabar mostrar botao na memoria pra fechar e trocar o menu pra escolher os graficos
+#Aumenta tela pra aumenta o tamanho 
+#Randomizar cores do processo
+#colocar numero do buraco e o id do processo na memoria no meio do bloco
+#Legenda do tamanho e tempo de saida na tela superior direito
+#uma seta pra controlar o clock pra avancar 
+#input mostrar o processo que vai entrar e usar um control pra q qnd der falso uma vez nao procequir mostrando os outros#com if dentro do while de entrada
+        #e dps mostrar a memoria att com o precesso na memoria
+                #tentar mostrar setas de tentativa provavelmente nas funcoes colocando as setas e apagando
+#output trocar cor do processo q irar sair apagar o id da memoria e dps colocar um retangulo de msm tamanho embaixo
+        #dps att memoria
