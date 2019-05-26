@@ -52,7 +52,7 @@ class mem_virtual():
         cont = 0
         for i in self.memory:
             if (isinstance(i,process)):
-                if (i.get_name() == proce.get_name()):
+                if (i.get_ids() == proce.get_ids()):
                     return cont
             cont += 1
         cont += 1
@@ -65,6 +65,10 @@ class mem_virtual():
             return 1
         return 0
 
+    def get_end(self,pos):
+        if (isinstance(self.memory[pos],process)):
+            return self.memory[pos].get_end()
+
     def get_size(self,pos):
         return self.memory[pos].get_size()
 
@@ -73,6 +77,9 @@ class mem_virtual():
             if isinstance(self.memory[i],cell_memory):
                 if (self.memory[i].get_ids() == hol.get_ids()):
                     return i
+
+    def get_ids(self,pos):
+        return self.memory[pos].get_ids()
 
     def BestFit(self,processo, clock):
         hole = self.dsc_hole()

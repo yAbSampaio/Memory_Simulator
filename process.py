@@ -15,7 +15,7 @@ class process():
     def get_size(self):
         return self.__size
 
-    def get_name(self):
+    def get_ids(self):
         return self.__name
 
     def modify(self, clock):

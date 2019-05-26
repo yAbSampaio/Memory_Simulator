@@ -21,7 +21,7 @@ proce = open("process.txt","r")
 grafs = graficos()
 interf = Interface()
 Memo = mem_virtual() #memória virtual
-interf.atualizar(Memo.get_len(),Memo)
+interf.atualizar(Memo.get_len(),Memo,atual_clock)
 
 print("* --------------------- Simulador de Memória ---------------------- *")
 choice = int(input("|Digite a opção de qual algoritmo deseja testar:\n|(1) First Fit\n|(2) Best Fit\n|(3) Worst Fit\n* --------------------- Simulador de Memória ---------------------- *\n|Opção: "))
@@ -40,6 +40,7 @@ list_proc = sorted(list_proc, key = process.get_arr)
 
 #---------------------------------------------------------------#
 while (Memo.get_len() != 1 or contador_proc < len(list_proc)):#Enquato haver processo na lista 
+    contr = True
     control = contador_proc
     while (contador_proc < len(list_proc) and (list_proc[control].get_arr() <= atual_clock) ):#Fazer lista de espera
         #Chamada da função first, best worst
@@ -48,10 +49,11 @@ while (Memo.get_len() != 1 or contador_proc < len(list_proc)):#Enquato haver pro
                 t_wait += atual_clock-list_proc[contador_proc].get_arr()
                 wait = atual_clock-list_proc[contador_proc].get_arr()
                 grafs.import_espera(wait)
-                grafs.import_process(list_proc[contador_proc].get_name())
+                grafs.import_process(list_proc[contador_proc].get_ids())
                 contador_proc += 1
                 control += 1
             else:
+                contr = False
                 n_try += 1
                 control += 1
 
@@ -60,7 +62,7 @@ while (Memo.get_len() != 1 or contador_proc < len(list_proc)):#Enquato haver pro
                 t_wait += atual_clock-list_proc[contador_proc].get_arr()
                 wait = atual_clock-list_proc[contador_proc].get_arr()
                 grafs.import_espera(wait)
-                grafs.import_process(list_proc[contador_proc].get_name())
+                grafs.import_process(list_proc[contador_proc].get_ids())
                 contador_proc += 1
                 control += 1
             else:
@@ -71,7 +73,7 @@ while (Memo.get_len() != 1 or contador_proc < len(list_proc)):#Enquato haver pro
                 t_wait += atual_clock-list_proc[contador_proc].get_arr()
                 wait = atual_clock-list_proc[contador_proc].get_arr()
                 grafs.import_espera(wait)
-                grafs.import_process(list_proc[contador_proc].get_name())
+                grafs.import_process(list_proc[contador_proc].get_ids())
                 contador_proc += 1
                 control += 1
             else:
@@ -88,8 +90,8 @@ while (Memo.get_len() != 1 or contador_proc < len(list_proc)):#Enquato haver pro
     print("-------------")
     print("Clock: "+str(atual_clock))
     Memo.printf()
-    interf.atualizar(Memo.get_len(),Memo)
-    #input("")
+    interf.atualizar(Memo.get_len(),Memo,atual_clock)
+    input("")
     print("-------------")
     print("\n")
     atual_clock += 1
