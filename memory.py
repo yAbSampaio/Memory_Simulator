@@ -66,7 +66,7 @@ class mem_virtual():
                 if (self.memory[i].get_ids() == hol.get_ids()):
                     return i
 
-    def BestFit(self,processo, clock):
+    def BestFit(self, processo, clock):
         hole = self.dsc_hole()
         list_best = sorted(hole, key = cell_memory.get_size)
         for cell in list_best:
