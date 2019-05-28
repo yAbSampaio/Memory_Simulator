@@ -52,7 +52,7 @@ class mem_virtual():
         cont = 0
         for i in self.memory:
             if (isinstance(i,process)):
-                if (i.get_name() == proce.get_name()):
+                if (i.get_ids() == proce.get_ids()):
                     return cont
             cont += 1
         cont += 1
@@ -60,39 +60,62 @@ class mem_virtual():
     def get_len(self):
         return len(self.memory)
 
+    def get_obj(self,pos):
+        if (isinstance(self.memory[pos],process)):
+            return 1
+        return 0
+
+    def get_end(self,pos):
+        if (isinstance(self.memory[pos],process)):
+            return self.memory[pos].get_end()
+
+    def get_size(self,pos):
+        return self.memory[pos].get_size()
+
     def get_id(self,hol):
         for i in range(len(self.memory)):
             if isinstance(self.memory[i],cell_memory):
                 if (self.memory[i].get_ids() == hol.get_ids()):
                     return i
 
-    def BestFit(self, processo, clock):
+    def get_ids(self,pos):
+        return self.memory[pos].get_ids()
+
+    def BestFit(self,processo, clock, inter,control):
         hole = self.dsc_hole()
         list_best = sorted(hole, key = cell_memory.get_size)
         for cell in list_best:
+            if(control):
+                inter.input_p(processo,self.get_id(cell))
             if (cell.get_size() >= processo.get_size()):
                 id = self.get_id(cell)
                 self.inp_proce(processo,clock,id)
                 return True
         return False
     
-    def WorstFit(self,processo, clock):
+    def WorstFit(self,processo, clock, inter,control):
         hole = self.dsc_hole()
         list_worst = sorted(hole, key = cell_memory.get_size,reverse=True)
         for cell in list_worst:
+            if(control):
+                inter.input_p(processo,self.get_id(cell))
             if (cell.get_size() >= processo.get_size()):
                 id = self.get_id(cell)
                 self.inp_proce(processo,clock,id)
                 return True
         return False
     
-    def FirstFit(self,processo, clock):
+    def FirstFit(self,processo, clock, inter,control):
+        cont = 0
         for cell in self.memory:
             if isinstance(cell,cell_memory):
+                if(control):
+                    inter.input_p(processo,cont)
                 if cell.get_size() >= processo.get_size():
                     id = self.get_id(cell)
                     self.inp_proce(processo, clock, id)
                     return True
+            cont += 1
         return False
 
     def printf(self):
