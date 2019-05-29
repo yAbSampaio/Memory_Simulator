@@ -8,13 +8,13 @@ from interaction import*
 import time
 
 #------------------------VarGlobais------------------------------------#
-atual_clock = 0
+atual_clock = 0 #virtual clock
 t_wait = 0 #t_inicio_clock - t_chegada
 t_fail = 0 #tentativas falhas
 t_medio = 0 #tempo médio
 contador_proc = 0 #contador
-n_try = 0
-wait = 0
+n_try = 0 #numero de falha clock a clock
+wait = 0 #numero de espera clock a clock
 List = [] #temporária para padronizar
 list_proc = [] #lista de processos padronizados
 #------------------------inicialização---------------------------------#
@@ -22,15 +22,15 @@ list_proc = [] #lista de processos padronizados
 proce = open("process.txt","r")
 grafs = graficos()
 menu = Menu_Inicio()
-input()
-screen = Interface()
+
 Memo = mem_virtual() #memória virtual
-screen.atualizar(Memo.get_len(),Memo,atual_clock)
+
 
 print("* --------------------- Simulador de Memória ---------------------- *")
-choice = int(input("|Digite a opção de qual algoritmo deseja testar:\n|(1) First Fit\n|(2) Best Fit\n|(3) Worst Fit\n* --------------------- Simulador de Memória ---------------------- *\n|Opção: "))
+choice = menu.choice()
+screen = Interface(Memo.get_len(),Memo,atual_clock)
 
-t_medio = time.time()
+#t_medio = time.time()
 
 for i in proce : #padronização do arquivo
     line = i.split("\n")[0]
@@ -102,28 +102,29 @@ while (Memo.get_len() != 1 or contador_proc < len(list_proc)):#Enquato haver pro
     grafs.import_falhas(n_try)
     grafs.import_clock(atual_clock)
     grafs.import_buraco(len(Memo.dsc_hole()))
-    print("-------------")
-    print("Clock: "+str(atual_clock))
-    Memo.printf()
-    #colocar um time sleep, ou um botao na graphics pra ver a interação
-    print("-------------")
-    print("\n")
+    #print("-------------")
+    #print("Clock: "+str(atual_clock))
+    #Memo.printf()
+    #print("-------------")
+    #print("\n")
     atual_clock += 1
-
+    time.sleep(0.5)
 
     
 print("* --------------------- Simulador de Memória ---------------------- *")
-choice2 = int(input("|Digite a opção de gráfico deseja analisar:\n|(1) Falhas\n|(2) Espera\n|(3) Fragmentação\n|(4) Encerrar \n* --------------------- Simulador de Memória ---------------------- *\n|Opção: "))
+t_wait = n_try/contador_proc
 screen.close()
-while(choice2 != 4):
-    if(choice2 == 1):
+menu = Menu_Final(n_try,t_wait)
+choice = menu.choice()
+while(choice != 4):
+    if(choice == 1):
         grafs.my_graph_falhas()
         print("Número de falhas "+ str(n_try))
-    if(choice2 == 2):
-        t_wait = n_try/contador_proc
+    elif(choice == 2):
         print("Número médio de espera "+str(t_wait))
         grafs.my_graph_espera()
-    if(choice2 == 3):
+    elif(choice == 3):
         grafs.my_graph_buracos()
         #t_medio = time.time()-t_medio
-    choice2 = int(input("|Digite a opção de gráfico deseja analisar:\n|(1) Falhas\n|(2) Espera\n|(3) Alocação\n|(4) Encerrar \n* --------------------- Simulador de Memória ---------------------- *\n|Opção: "))
+    menu = Menu_Final(n_try,t_wait)
+    choice = menu.choice()
