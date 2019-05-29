@@ -160,7 +160,7 @@ class Interface():
         Tam.setStyle("bold")
         Id.draw(self.__simulator)
         Tam.draw(self.__simulator)
-        if(self.step > 900):
+        if(pos == 0):
             time.sleep(1)
         time.sleep(0.25)
         
