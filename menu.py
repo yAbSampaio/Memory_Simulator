@@ -1,6 +1,6 @@
 from graphics import*
 
-class Menu():
+class Menu_Final():
     
     def __init__(self):
         self.__menu = GraphWin("Menu", 400,300, autoflush=False )
@@ -83,9 +83,24 @@ class Menu():
         self.Algoritmos.draw(self.__menu)
         #self.Title.draw(self.__simulator)
 
-        cliquePonto = self.__menu.getMouse()
-    
-    def menu_inicio():
+        click = self.__menu.getMouse()
+        print(click.getX())
+        print(click.getY())
+        self.__menu.update()
+        if(click.getX()>40 and click.getX()<160 and click.getY()>150 and click.getY()<170):
+            #Falhas
+            print("Falhas")
+        elif(click.getX()>40 and click.getX()<160 and click.getY()>180 and click.getY()<200):
+            print("Espera")
+        elif(click.getX()>40 and click.getX()<160 and click.getY()>210 and click.getY()<230):
+            print("Alocação")
+        elif(click.getX()>40 and click.getX()<160 and click.getY()>250 and click.getY()<270):
+            print("Voltar")
+        
+
+class Menu_Inicio():
+
+    def __init__(self):
         self.__menu = GraphWin("Menu", 200,250, autoflush=False )
         self.__menu.setBackground('white')
 
@@ -126,7 +141,19 @@ class Menu():
         self.Algoritmos4.setStyle("bold")
         self.Algoritmos4.draw(self.__menu)
 
-        cliquePonto = self.__menu.getMouse()
+        click = self.__menu.getMouse()
+        print(click.getX())
+        print(click.getY())
+        self.__menu.update()
 
+        if(click.getX()>40 and click.getX()<160 and click.getY()>140 and click.getY()<160):
+            #Falhas
+            print("First Fit")
+        elif(click.getX()>40 and click.getX()<160 and click.getY()>170 and click.getY()<190):
+            print("Best Fit")
+        elif(click.getX()>40 and click.getX()<160 and click.getY()>200 and click.getY()<220):
+            print("Worst FIt")
+    
+        
 
 

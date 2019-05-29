@@ -21,7 +21,7 @@ list_proc = [] #lista de processos padronizados
 
 proce = open("process.txt","r")
 grafs = graficos()
-menu = Menu()
+menu = Menu_Inicio()
 input()
 screen = Interface()
 Memo = mem_virtual() #memória virtual
