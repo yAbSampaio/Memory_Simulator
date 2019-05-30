@@ -166,6 +166,12 @@ class Interface():
         Tam.setStyle("bold")
         Id.draw(self.__simulator)
         Tam.draw(self.__simulator)
+<<<<<<< HEAD
+=======
+        if(pos == 0):
+            time.sleep(1)
+        time.sleep(0.25)
+>>>>>>> master
         
         if(self.Jump == 0):
             if(pos == 0):
