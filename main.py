@@ -15,6 +15,7 @@ t_medio = 0 #tempo médio
 contador_proc = 0 #contador
 n_try = 0 #numero de falha clock a clock
 wait = 0 #numero de espera clock a clock
+Jump = 0
 List = [] #temporária para padronizar
 list_proc = [] #lista de processos padronizados
 #------------------------inicialização---------------------------------#
@@ -102,13 +103,16 @@ while (Memo.get_len() != 1 or contador_proc < len(list_proc)):#Enquato haver pro
     grafs.import_falhas(n_try)
     grafs.import_clock(atual_clock)
     grafs.import_buraco(len(Memo.dsc_hole()))
+    
+    if(Jump == 0):
+        Jump = screen.Jumper()
+    
     #print("-------------")
     #print("Clock: "+str(atual_clock))
     #Memo.printf()
     #print("-------------")
     #print("\n")
     atual_clock += 1
-    time.sleep(0.5)
 
     
 print("* --------------------- Simulador de Memória ---------------------- *")

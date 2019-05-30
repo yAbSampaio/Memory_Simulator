@@ -4,6 +4,7 @@ class Interface():
     
     def __init__(self,number,mem,clock):
         self.step = 0
+        self.Jump = 0
 
         self.__simulator = GraphWin("Memória",1224,600)
         self.__simulator.setBackground('white')
@@ -53,6 +54,11 @@ class Interface():
         self.recH = Rectangle(Point(900, 150), Point(925,165))
         self.recH.setFill(color_rgb(192,192,192))
         self.recH.draw(self.__simulator)
+
+        self.step = Image(Point(500,520), "step.png")
+        self.jump = Image(Point(700,520), "jump.png")
+        self.jump.draw(self.__simulator)
+        self.step.draw(self.__simulator)
 
         self.List_Hole = []
         self.List_id = []
@@ -160,15 +166,17 @@ class Interface():
         Tam.setStyle("bold")
         Id.draw(self.__simulator)
         Tam.draw(self.__simulator)
-        if(self.step > 900):
-            time.sleep(1)
-        time.sleep(0.25)
         
-        while (abs((Rec.getCenter()).getX()-(self.List_Hole[pos].getCenter()).getX()) > 1.2):
-            time.sleep(0.002)
-            Rec.move(1,0)
-            Tam.move(1,0)
-            Id.move(1,0)
+        if(self.Jump == 0):
+            if(pos == 0):
+                time.sleep(1)
+            time.sleep(0.25)
+            
+            while (abs((Rec.getCenter()).getX()-(self.List_Hole[pos].getCenter()).getX()) > 1.2):
+                time.sleep(0.0009)
+                Rec.move(1,0)
+                Tam.move(1,0)
+                Id.move(1,0)
 
         Rec.undraw()
         Id.undraw()
@@ -198,9 +206,27 @@ class Interface():
         Id.draw(self.__simulator)
         Tam.draw(self.__simulator)
         
-        time.sleep(0.7)
-        Rec.undraw()
-        Id.undraw()
-        Tam.undraw()
-        time.sleep(0.7)
-        end.undraw()
+        
+        if (self.Jump == 0):
+            time.sleep(0.8)
+            Rec.undraw()
+            Id.undraw()
+            Tam.undraw()
+            time.sleep(0.8)
+            end.undraw()
+        else:
+            Rec.undraw()
+            Id.undraw()
+            Tam.undraw()
+            end.undraw()
+
+    def Jumper(self):
+        while (True):
+            Point = self.__simulator.getMouse()
+            Px = Point.getX()
+            Py = Point.getY()
+            if (Px > 469 and Py > 484 and Px < 538 and Py < 557):
+                return 0
+            elif (Px > 655 and Py > 484 and Px < 747 and Py < 557):
+                self.Jump = 1
+                return 1
