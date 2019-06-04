@@ -4,7 +4,7 @@ class process():
         self.__t_arrival = int(arr)
         self.__size = int(tam)
         self.__t_run = int(run)
-        self.__t_end = None
+        self.__t_end = -1
 
     def get_arr(self):
         return self.__t_arrival
