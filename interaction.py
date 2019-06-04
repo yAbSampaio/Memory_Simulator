@@ -54,11 +54,10 @@ class Interface():
         self.recH = Rectangle(Point(900, 150), Point(925,165))
         self.recH.setFill(color_rgb(192,192,192))
         self.recH.draw(self.__simulator)
-
-        self.step = Image(Point(500,520), "step.png")
-        self.jump = Image(Point(700,520), "jump.png")
-        self.jump.draw(self.__simulator)
-        self.step.draw(self.__simulator)
+        #self.step = Image(Point(500,520), "step.png")
+        #self.jump = Image(Point(700,520), "jump.png")
+        #self.jump.draw(self.__simulator)
+        #self.step.draw(self.__simulator)
 
         self.List_Hole = []
         self.List_id = []
@@ -166,12 +165,9 @@ class Interface():
         Tam.setStyle("bold")
         Id.draw(self.__simulator)
         Tam.draw(self.__simulator)
-<<<<<<< HEAD
-=======
         if(pos == 0):
             time.sleep(1)
         time.sleep(0.25)
->>>>>>> master
         
         if(self.Jump == 0):
             if(pos == 0):
