@@ -1,9 +1,9 @@
 #coding=utf-8
-from cell import*
-from process import*
+from include.cell import*
+from include.process import*
 
 class mem_virtual():
-    def __init__(self):
+    def __init__(self): 
         self.memory = []
         self.idb = 0
         self.memory.append(cell_memory(1024, self.idb))
