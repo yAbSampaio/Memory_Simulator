@@ -1,0 +1,9 @@
+# vscode
+.vscode
+
+# project
+__pycache__
+
+# project
+src/__pycache__
+

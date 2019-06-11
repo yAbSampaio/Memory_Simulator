@@ -1,4 +1,4 @@
-from graphics import*
+from include.graphics import*
 
 class Menu_Final():
     
@@ -42,6 +42,13 @@ class Menu_Final():
         self.Algoritmos4.draw(self.__menu)
 
         self.Algoritmos4 = Text(Point(100,260), 'Voltar')
+        self.Algoritmos4.setFace("times roman")
+        self.Algoritmos4.setSize(15)
+        self.Algoritmos4.setTextColor("dark blue")
+        self.Algoritmos4.setStyle("bold")
+        self.Algoritmos4.draw(self.__menu)
+
+        self.Algoritmos4 = Text(Point(200,260), 'Fechar')
         self.Algoritmos4.setFace("times roman")
         self.Algoritmos4.setSize(15)
         self.Algoritmos4.setTextColor("dark blue")
@@ -93,6 +100,9 @@ class Menu_Final():
             elif(click.getX()>40 and click.getX()<160 and click.getY()>250 and click.getY()<270):
                 self.__menu.close()
                 return 4
+            elif(click.getX()>200 and click.getX()<260 and click.getY()>250 and click.getY()<270):
+                self.__menu.close()
+                return 5
 
 class Menu_Inicio():
 

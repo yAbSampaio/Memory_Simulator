@@ -1,20 +1,26 @@
-from graphics import*
+from include.graphics import*
 
 class Interface():
     
-    def __init__(self,number,mem,clock):
+    def __init__(self,number,mem,clock,name):
         self.step = 0
         self.Jump = 0
 
         self.__simulator = GraphWin("Memória",1224,600)
         self.__simulator.setBackground('white')
 
-        self.Title = Text(Point(600, 50), 'Simulador de Memória')
+        self.Title = Text(Point(600, 25), 'Simulador de Memória')
         self.Title.setFace("times roman")
         self.Title.setSize(28)
         self.Title.setStyle("bold")
         self.Title.draw(self.__simulator)
         
+        self.Name = Text(Point(600, 75), name)
+        self.Name.setFace("times roman")
+        self.Name.setSize(28)
+        self.Name.setStyle("bold")
+        self.Name.draw(self.__simulator)
+
         self.Lege = Text(Point(100, 25), 'Status da Memória:')
         self.Lege.setFace("times roman")
         self.Lege.setSize(12)
@@ -54,8 +60,9 @@ class Interface():
         self.recH = Rectangle(Point(900, 150), Point(925,165))
         self.recH.setFill(color_rgb(192,192,192))
         self.recH.draw(self.__simulator)
-        #self.step = Image(Point(500,520), "step.png")
-        #self.jump = Image(Point(700,520), "jump.png")
+
+        #self.step = Image(Point(500,520), "images/step.png")
+        #self.jump = Image(Point(700,520), "images/jump.png")
         #self.jump.draw(self.__simulator)
         #self.step.draw(self.__simulator)
 
@@ -92,30 +99,28 @@ class Interface():
         for i in range(number):
             List = []
             pt_2 = pt_1+self.step
-
             self.List_Hole.append(Rectangle(Point(pt_1, 350), Point(pt_2,450)))
-            self.List_id.append(Text(Point((pt_2+pt_1)/2, 400), 'Id: '+str(mem.get_ids(i))))
-            self.List_id[i].setSize(20)
-            self.List_id[i].setStyle("bold")
-            pt_1 = pt_2
-
             if mem.get_obj(i) == 1:
+                self.List_id.append(Text(Point((pt_2+pt_1)/2, 400), 'Id: '+str(mem.get_ids(i))))
+                pt_1 = pt_2
+                self.List_id[i].setSize(20)
+                self.List_id[i].setStyle("bold")
                 self.List_Hole[i].setFill(color_rgb(255,154,154))
                 self.List_Hole[i].draw(self.__simulator)
                 self.List_id[i].draw(self.__simulator)
                 if(i>=5):
-                    List.append(Text(Point(1180, pt_t2), 'Processo'))
-                    List.append(Text(Point(1180, pt_t2+25), 'Id: '+str(mem.get_ids(i))))
-                    List.append(Text(Point(1180, pt_t2+50), 'Tam: '+str(mem.get_size(i))))
-                    List.append(Text(Point(1180, pt_t2+75), 'Saida: '+str(mem.get_end(i))))
-                    pt_t2 += 100
+                    List.append(Text(Point(980, pt_t2), 'Processo'))
+                    List.append(Text(Point(980, pt_t2+25), 'Id: '+str(mem.get_ids(i))))
+                    List.append(Text(Point(1080, pt_t2+25), 'Tam: '+str(mem.get_size(i))))
+                    List.append(Text(Point(1180, pt_t2+25), 'Saida: '+str(mem.get_end(i))))
+                    pt_t2 += 50
                 
                 else:
                     List.append(Text(Point(40, pt_t), 'Processo'))
                     List.append(Text(Point(40, pt_t+25), 'Id: '+str(mem.get_ids(i))))
-                    List.append(Text(Point(40, pt_t+50), 'Tam: '+str(mem.get_size(i))))
-                    List.append(Text(Point(40, pt_t+75), 'Saida: '+str(mem.get_end(i))))
-                    pt_t += 100
+                    List.append(Text(Point(140, pt_t+25), 'Tam: '+str(mem.get_size(i))))
+                    List.append(Text(Point(240, pt_t+25), 'Saida: '+str(mem.get_end(i))))
+                    pt_t += 50
 
                 for i in range(4):
                     List[i].setFace("times roman")
@@ -123,20 +128,24 @@ class Interface():
                     List[i].draw(self.__simulator)
             
             else:
+                self.List_id.append(Text(Point((pt_2+pt_1)/2, 400), 'Hole'))
+                pt_1 = pt_2
+                self.List_id[i].setSize(20)
+                self.List_id[i].setStyle("bold")
                 self.List_Hole[i].setFill(color_rgb(192,192,192))
                 self.List_Hole[i].draw(self.__simulator)
                 self.List_id[i].draw(self.__simulator)
                 if(i>=5):        
-                    List.append(Text(Point(1180, pt_t2), 'Buraco'))
-                    List.append(Text(Point(1180, pt_t2+25), 'Id: '+str(mem.get_ids(i))))
-                    List.append(Text(Point(1180, pt_t2+50), 'Tam: '+str(mem.get_size(i))))
+                    List.append(Text(Point(980, pt_t2), 'Buraco'))
+                    List.append(Text(Point(980, pt_t2+25), 'Pos: '+str(i)))
+                    List.append(Text(Point(1080, pt_t2+25), 'Tam: '+str(mem.get_size(i))))
                     pt_t2 += 75
                 
                 else:
                     List.append(Text(Point(40, pt_t), 'Buraco'))
-                    List.append(Text(Point(40, pt_t+25), 'Id: '+str(mem.get_ids(i))))
-                    List.append(Text(Point(40, pt_t+50), 'Tam: '+str(mem.get_size(i))))
-                    pt_t += 75
+                    List.append(Text(Point(40, pt_t+25), 'Pos: '+str(i)))
+                    List.append(Text(Point(140, pt_t+25), 'Tam: '+str(mem.get_size(i))))
+                    pt_t += 50
                 for i in range(3):
                     List[i].setFace("times roman")
                     List[i].setSize(10)
@@ -196,7 +205,7 @@ class Interface():
         Rec = Rectangle(Point(p1, 225), Point(p1+self.step,325))
         Rec.setFill(color_rgb(255,154,154))
         Rec.draw(self.__simulator)
-        Id = Text(Point((p1*2+self.step)/2, 265), 'Id: '+str(mem.get_ids(id)))
+        Id = Text(Point((p1*2+self.step)/2, 255), 'Id: '+str(mem.get_ids(id)))
         Tam = Text(Point((p1*2+self.step)/2, 285), 'Tam: '+str(mem.get_size(id)))
         Id.setSize(20)
         Tam.setSize(20)
