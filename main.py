@@ -130,7 +130,7 @@ if __name__ == "__main__":
             print("Número de falhas "+ str(n_try))
         elif(choice == 2):
             print("Número médio de espera "+str(t_wait))
-            grafs.my_graph_espera()
+            #grafs.my_graph_espera()
         elif(choice == 3):
             grafs.my_graph_buracos()
         menu = Menu_Final(n_try,t_wait)

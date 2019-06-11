@@ -3,7 +3,7 @@ from graphics import*
 class Menu_Final():
     
     def __init__(self,falhas,espera):
-        self.__menu = GraphWin("Menu", 400,300, autoflush=False )
+        self.__menu = GraphWin("Menu", 400,300, autoflush=True )
         self.__menu.setBackground('white')
 
         self.Title = Text(Point(200,50), 'Simulador de\nAlocação de\nProcessos')
