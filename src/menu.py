@@ -2,16 +2,23 @@ from include.graphics import*
 
 class Menu_Final():
     
-    def __init__(self,falhas,espera):
+    def __init__(self,falhas,espera,name):
         self.__menu = GraphWin("Menu", 400,300, autoflush=True )
         self.__menu.setBackground('white')
 
-        self.Title = Text(Point(200,50), 'Simulador de\nAlocação de\nProcessos')
+        self.Title = Text(Point(200,40), 'Simulador de\nAlocação de\nProcessos')
         self.Title.setFace("times roman")
         self.Title.setSize(18)
         self.Title.setTextColor("dark blue")
         self.Title.setStyle("bold")
         self.Title.draw(self.__menu)
+
+        self.Name = Text(Point(200,90), name)
+        self.Name.setFace("times roman")
+        self.Name.setSize(18)
+        self.Name.setTextColor("dark blue")
+        self.Name.setStyle("bold")
+        self.Name.draw(self.__menu)
 
         self.Algoritmos = Text(Point(100,120), 'Gráficos')
         self.Algoritmos.setFace("times roman")
@@ -100,7 +107,7 @@ class Menu_Final():
             elif(click.getX()>40 and click.getX()<160 and click.getY()>250 and click.getY()<270):
                 self.__menu.close()
                 return 4
-            elif(click.getX()>200 and click.getX()<260 and click.getY()>250 and click.getY()<270):
+            elif(click.getX()>167 and click.getX()<230 and click.getY()>250 and click.getY()<270):
                 self.__menu.close()
                 return 5
 

@@ -61,10 +61,10 @@ class Interface():
         self.recH.setFill(color_rgb(192,192,192))
         self.recH.draw(self.__simulator)
 
-        #self.step = Image(Point(500,520), "images/step.png")
-        #self.jump = Image(Point(700,520), "images/jump.png")
-        #self.jump.draw(self.__simulator)
-        #self.step.draw(self.__simulator)
+        self.step = Image(Point(500,520), "images/step.png")
+        self.jump = Image(Point(700,520), "images/jump.png")
+        self.jump.draw(self.__simulator)
+        self.step.draw(self.__simulator)
 
         self.List_Hole = []
         self.List_id = []

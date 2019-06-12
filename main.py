@@ -125,7 +125,7 @@ if __name__ == "__main__":
             
         t_wait = t_wait/contador_proc
         screen.close()
-        menu = Menu_Final(n_try,t_wait)
+        menu = Menu_Final(n_try,t_wait,name)
         choice = menu.choice()
         while(choice != 5):
             if(choice == 1):
@@ -137,5 +137,5 @@ if __name__ == "__main__":
             elif(choice == 4):
                 back = 0
                 break
-            menu = Menu_Final(n_try,t_wait)
+            menu = Menu_Final(n_try,t_wait,name)
             choice = menu.choice()
