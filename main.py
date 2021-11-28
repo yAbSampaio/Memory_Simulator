@@ -119,7 +119,7 @@ if __name__ == "__main__":
             
             if(Jump == 0):
                 Jump = screen.Jumper()
-            #time.sleep(0.5)
+            time.sleep(0.3)
             atual_clock += 1
             screen.atualizar(Memo.get_len(),Memo,atual_clock)
             

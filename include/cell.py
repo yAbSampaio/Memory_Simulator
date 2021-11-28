@@ -14,7 +14,7 @@ class cell_memory():
         return self.__id_m
 
     def printf(self):
-        print("Hole")
+        print("Vazio")
         print("Tamanho: "+str(self.__size))
         print("id: "+str(self.__id_m))
         print("--------------------------")

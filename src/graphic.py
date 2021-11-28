@@ -55,8 +55,3 @@ class graficos():
             plt.plot(xs,ys)
             plt.show()
     
-#criar um menu na main pra escolher os first fit etc
-#qnd acabar mostrar botao na memoria pra fechar e trocar o menu pra escolher os graficos
-#uma seta pra controlar o clock pra avancar 
-#output trocar cor do processo q irar sair apagar o id da memoria e dps colocar um retangulo de msm tamanho embaixo
-        #dps att memoria
